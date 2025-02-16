@@ -10,7 +10,7 @@ import java.util.UUID;
 public class Channel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private UUID id;    
 
     @ManyToOne
     @JoinColumn(name = "profile_id", nullable = false)
