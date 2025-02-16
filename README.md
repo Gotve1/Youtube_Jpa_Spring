@@ -4,7 +4,7 @@ test api post request
     "profile": {
         "id": "123e4567-e89b-12d3-a456-426614174000"
     },
-    "email": "test@eamil.com",
+    "email": "test@email.com",
     "name": "bobr",
     "password": "testpassword123",
     "photo": "photo1.jpg",
