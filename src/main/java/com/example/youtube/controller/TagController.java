@@ -23,7 +23,7 @@ public class TagController {
         return tagService.getAllTags();
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public HttpEntity<?> getTag(@PathVariable UUID id) {
         return ResponseEntity.ok(tagService.getTagById(id));
     }
@@ -38,7 +38,7 @@ public class TagController {
         return ResponseEntity.ok(tagService.updateTag(id, tagDetails));
     }
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public HttpEntity<Playlist> deleteTag(@PathVariable UUID id) {
         tagService.deleteTag(id);
         return ResponseEntity.noContent().build();
