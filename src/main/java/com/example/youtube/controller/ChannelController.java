@@ -3,6 +3,7 @@ package com.example.youtube.controller;
 import com.example.youtube.model.Channel;
 import com.example.youtube.service.ChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class ChannelController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Channel> getChannelById(@PathVariable UUID id) {
+    public HttpEntity<?> getChannelById(@PathVariable UUID id) {
         return ResponseEntity.ok(channelService.getChannelById(id));
     }
 
@@ -32,12 +33,12 @@ public class ChannelController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Channel> updateChannel(@PathVariable UUID id, @RequestBody Channel channelDetails) {
+    public HttpEntity<Channel> updateChannel(@PathVariable UUID id, @RequestBody Channel channelDetails) {
         return ResponseEntity.ok(channelService.updateChannel(id, channelDetails));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteChannel(@PathVariable UUID id) {
+    public HttpEntity<Void> deleteChannel(@PathVariable UUID id) {
         channelService.deleteChannel(id);
         return ResponseEntity.noContent().build();
     }

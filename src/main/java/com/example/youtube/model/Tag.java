@@ -1,11 +1,14 @@
 package com.example.youtube.model;
 
-
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "tag")
@@ -16,37 +19,4 @@ public class Tag {
 
     private String name;
     private String CreatedDate;
-
-    public Tag() {
-    }
-
-    public Tag(UUID id, String name, String createdDate) {
-        this.id = id;
-        this.name = name;
-        CreatedDate = createdDate;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCreatedDate() {
-        return CreatedDate;
-    }
-
-    public void setCreatedDate(String createdDate) {
-        CreatedDate = createdDate;
-    }
 }

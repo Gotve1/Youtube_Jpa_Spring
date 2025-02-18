@@ -18,23 +18,23 @@ public class TagService {
         return tagRepository.findAll();
     }
 
-    public Tag getTagById(UUID id) throws Throwable {
-        return (Tag) tagRepository.findById(id).orElseThrow(() -> new RuntimeException("Tag Not Found"));
+    public Tag getTagById(UUID id) {
+        return tagRepository.findById(id).orElseThrow(() -> new RuntimeException("Tag not found"));
     }
 
-    public Tag createTag(Tag tag) {
+    public Tag addTag(Tag tag) {
         return tagRepository.save(tag);
     }
 
-    public Tag updateTag(UUID id, Tag tagdetails) throws Throwable {
+    public Tag updateTag(UUID id, Tag tagDetails) {
         Tag tag = getTagById(id);
-        tag.setName(tagdetails.getName());
+        tag.setName(tagDetails.getName());
         tag.setId(tag.getId());
-        tag.setCreatedDate(tagdetails.getCreatedDate());
+        tag.setCreatedDate(tagDetails.getCreatedDate());
         return tagRepository.save(tag);
     }
 
-    public void deleteTag(UUID id) throws Throwable {
+    public void deleteTag(UUID id) {
         tagRepository.deleteById(id);
     }
 }
