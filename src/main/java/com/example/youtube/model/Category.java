@@ -19,7 +19,4 @@ public class Category {
     private UUID id;
 
     private String name;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate = new Date();
 }

@@ -23,7 +23,7 @@ public class ChannelController {
     }
 
     @GetMapping("/{id}")
-    public HttpEntity<?> getChannelById(@PathVariable UUID id) {
+    public HttpEntity<Channel> getChannelById(@PathVariable UUID id) {
         return ResponseEntity.ok(channelService.getChannelById(id));
     }
 

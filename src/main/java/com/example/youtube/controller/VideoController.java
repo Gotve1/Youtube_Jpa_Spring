@@ -1,9 +1,6 @@
 package com.example.youtube.controller;
 
-
-import com.example.youtube.model.Tag;
 import com.example.youtube.model.Video;
-import com.example.youtube.service.TagService;
 import com.example.youtube.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;

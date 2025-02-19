@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+        }
+        input[type="text"], input[type="password"] {
+            padding: 8px;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        #submit-btn {
+            margin-top: 15px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #submit-btn:hover {
+            background-color: #45a049;
+        }
+        #message {
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+<form id="registration-form">
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" required>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="surname">Surname:</label>
+    <input type="text" id="surname" name="surname" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <label for="photo">Photo URL:</label>
+    <input type="text" id="photo" name="photo" required>
+
+    <label for="role">Role:</label>
+    <input type="text" id="role" name="role" required>
+
+    <input type="hidden" id="uuid" name="uuid">
+    <input type="hidden" id="status" name="status">
+
+    <button type="button" id="submit-btn">Register</button>
+</form>
+
+<div id="message"></div>
+
+<script>
+    function generateUUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
+    document.getElementById("uuid").value = generateUUID();
+    document.getElementById("status").value = "OK";
+
+    document.getElementById("submit-btn").addEventListener("click", function() {
+        const email = document.getElementById("email").value;
+        const name = document.getElementById("name").value;
+        const surname = document.getElementById("surname").value;
+        const password = document.getElementById("password").value;
+        const photo = document.getElementById("photo").value;
+        const role = document.getElementById("role").value;
+
+        if (email && name && surname && password && photo && role) {
+            const formData = {
+                email: email,
+                name: name,
+                surname: surname,
+                password: password,
+                photo: photo,
+                role: role,
+                uuid: document.getElementById("uuid").value,
+                status: document.getElementById("status").value
+            };
+
+            fetch("http://localhost:8080/profiles", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            }).then(response => {
+                if (response.ok) {
+                    document.getElementById("message").textContent = "You have been successfully registered";
+                } else {
+                    document.getElementById("message").textContent = "Registration failed. Please try again.";
+                }
+            }).catch(error => {
+                document.getElementById("message").textContent = "An error occurred, please try again.";
+            });
+        } else {
+            document.getElementById("message").textContent = "Fill the bars";
+        }
+    });
+</script>
+
+</body>
+</html>
