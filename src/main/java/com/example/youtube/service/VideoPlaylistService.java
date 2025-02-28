@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class VideoPlaylistService {
@@ -22,7 +21,7 @@ public class VideoPlaylistService {
         return pvr.findById(id).orElseThrow(() -> new RuntimeException("PlaylistVideo not found"));
     }
 
-    public PlaylistVideo createPlaylistVideo(Integer id, PlaylistVideo playlistVideoDetails) {
+    public PlaylistVideo createPlaylistVideo(PlaylistVideo playlistVideoDetails) {
         return pvr.save(playlistVideoDetails);
     }
 
