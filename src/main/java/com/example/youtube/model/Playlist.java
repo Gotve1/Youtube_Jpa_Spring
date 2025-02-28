@@ -16,7 +16,6 @@ public class Playlist {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-
     private UUID channelId;
     private String name;
     private String description;
